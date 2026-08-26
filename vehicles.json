@@ -21,7 +21,7 @@
     {
         "id": 2,
         "title": "2009 alto lxi",
-        "type": "car",
+        "type": "Car",
         "brand": "maruthi",
         "model": "alto lxi",
         "year": 2009,
@@ -38,7 +38,7 @@
     {
         "id": 3,
         "title": "activa 2016",
-        "type": "bike",
+        "type": "Bike",
         "brand": "activa",
         "model": "activa 3G",
         "year": 2016,
@@ -55,7 +55,7 @@
     {
         "id": 4,
         "title": "2007 alto ",
-        "type": "car",
+        "type": "Car",
         "brand": "maruthi",
         "model": "alto  ",
         "year": 2007,
