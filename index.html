@@ -315,7 +315,7 @@ function displayVehicles(vehicles) {
 
         const card =
             document.createElement("div");
-            card.id = `vehicle-${vehicle.id}`;
+          
 
 
         card.className =
@@ -339,8 +339,7 @@ function displayVehicles(vehicles) {
                 src="${vehicle.image}"
                 alt="${vehicle.title}"
                 class="vehicle-image"
-                <button onclick="shareVehicle(${vehicle.id})">
-         share
+                
 </button>
             >
 
@@ -407,30 +406,7 @@ function displayVehicles(vehicles) {
 
 
 loadVehicles();
-   async function shareVehicle(vehicle) {
-    const vehicleUrl =
-        window.location.origin +
-        window.location.pathname +
-        "?vehicle=" + encodeURIComponent(vehicle.id);
-
-    const shareText =
-        `${vehicle.title}\n` +
-        `₹${vehicle.price}\n` +
-        `${vehicle.kilometers} km\n` +
-        `${vehicle.location}\n\n` +
-        `View vehicle:\n${vehicleUrl}`;
-
-    if (navigator.share) {
-        await navigator.share({
-            title: vehicle.title,
-            text: shareText,
-            url: vehicleUrl
-        });
-    } else {
-        await navigator.clipboard.writeText(shareText);
-        alert("Vehicle details and link copied!");
-    }
-}
+   
 
 </script>
 
