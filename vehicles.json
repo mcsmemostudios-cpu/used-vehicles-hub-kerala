@@ -13,6 +13,7 @@
         "owners": 2,
         "location": "Kozhikode, Kerala",
         "description": "Well maintained vehicle in good condition.",
+        "phone": "7907493450",
         "image": "images/swift.jpg"
        
     },
@@ -31,6 +32,7 @@
         "owners": 1,
         "location": "Wayanad, Kerala",
         "description": "Good condition motorcycle.",
+        "phone": "7907493450",
         "image": "images/classic350.jpg"
     }
 ]
