@@ -20,19 +20,19 @@
 
     {
         "id": 2,
-        "title": "Royal Enfield Classic 350",
-        "type": "Bike",
-        "brand": "Royal Enfield",
-        "model": "Classic 350",
-        "year": 2021,
-        "price": 120000,
+        "title": "2009 alto lxt",
+        "type": "car",
+        "brand": "maruthi",
+        "model": "alto lxi",
+        "year": 2009,
+        "price": 129000,
         "fuel": "Petrol",
         "transmission": "Manual",
-        "kilometers": 25000,
-        "owners": 1,
+        "kilometers": 78000,
+        "owners": 2,
         "location": "Wayanad, Kerala",
         "description": "Good condition motorcycle.",
-        "phone": "7907493450",
-        "image": "images/classic350.jpg"
+        "phone": "8921135045",
+        "image": "images/redalto2009.jpg"
     }
 ]
