@@ -148,7 +148,7 @@
         "brand": "toyota",
         "model": "ethios",
         "year": 2012,
-        "price": "sold",
+        "price": 200000,
         "fuel": "diesel",
         "transmission": "Manual",
         "kilometers": 0.0 ,
