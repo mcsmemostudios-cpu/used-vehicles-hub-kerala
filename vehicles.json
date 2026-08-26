@@ -176,6 +176,24 @@
         "phone": "8921135045",
         "image": "images/2012figosolddesel.png"
        
+    },
+     {
+        "id": 11,
+        "title": "2009 single owner passion pluse till 2029",
+        "type": "Bike",
+        "brand": "hero honda",
+        "model": "passion pluse",
+        "year": 2009,
+        "price": 15000,
+        "fuel": "Petrol",
+        "transmission": "Manual",
+        "kilometers": 0.0 ,
+        "owners": 1,
+        "location": "perambra,kozhikode, Kerala",
+        "description": "Well maintained vehicle in good condition.",
+        "phone": "8589896548",
+        "image": "images/passionplus2009.png"
+       
     }
 
     
