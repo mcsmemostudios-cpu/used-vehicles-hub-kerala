@@ -68,6 +68,24 @@
         "description": "Well maintained vehicle in good condition.AC",
         "phone": "8921135045",
         "image": "images/whitealto2007.jpg"
+    },
+    {
+        "id": 5,
+        "title": "2012 eon",
+        "type": "Car",
+        "brand": "hyundai",
+        "model": "Eon",
+        "year": 2012,
+        "price": 135000,
+        "fuel": "Petrol",
+        "transmission": "Manual",
+        "kilometers": 95000 ,
+        "owners": 2,
+        "location": "muvatupuzha, Kerala",
+        "description": "Well maintained vehicle in good condition..",
+        "phone": "8921135045",
+        "image": "images/redeon2012.png"
+       
     }
     
 ]
