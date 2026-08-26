@@ -336,6 +336,19 @@ function displayVehicles(vehicles) {
 
 
         card.innerHTML = `
+        card.innerHTML = `
+    <div
+        class="vehicle-data"
+        data-title="${vehicle.title || ""}"
+        data-price="${vehicle.price || ""}"
+        data-year="${vehicle.year || ""}"
+        data-fuel="${vehicle.fuel || ""}"
+        data-transmission="${vehicle.transmission || ""}"
+        data-kilometers="${vehicle.kilometers || ""}"
+        data-location="${vehicle.location || ""}"
+        data-description="${vehicle.description || ""}"
+        data-phone="${vehicle.phone || ""}"
+    >
 
             <img
                 src="${vehicle.image}"
@@ -353,7 +366,8 @@ function displayVehicles(vehicles) {
                 <div class="price">
                     ${price}
                 </div>
-
+                     
+                      
 
                 <p>
 
@@ -387,11 +401,27 @@ function displayVehicles(vehicles) {
                 </p>
 
 
-               <a class="call-btn" href="tel:${vehicle.phone}">
-    📞 Call
-</a>
+              <div class="vehicle-buttons">
+
+    <a
+        class="call-btn"
+        href="tel:${vehicle.phone}"
+    >
+        📞 Call
+    </a>
+
+    <button
+        class="share-btn"
+        onclick="shareVehicle(this)"
+    >
+        🔗 Share
+    </button>
+
+</div>
 
             </div>
+ 
+    </div>
 
         `;
 
@@ -402,7 +432,69 @@ function displayVehicles(vehicles) {
 
 }
 
+async function shareVehicle(button) {
 
+    const data = button
+        .closest(".vehicle-data")
+        .dataset;
+
+    const price = data.price
+        ? "₹" + Number(data.price).toLocaleString("en-IN")
+        : "Price on request";
+
+    const message =
+`🚗 ${data.title}
+
+💰 Price: ${price}
+📅 Year: ${data.year || "N/A"}
+⛽ Fuel: ${data.fuel || "N/A"}
+⚙️ Transmission: ${data.transmission || "N/A"}
+🛣️ Kilometers: ${data.kilometers
+    ? Number(data.kilometers).toLocaleString("en-IN") + " km"
+    : "N/A"}
+📍 Location: ${data.location || "N/A"}
+
+📝 ${data.description || "No description"}
+
+📞 Contact: ${data.phone || "N/A"}
+
+🔗 Used Vehicles Hub Kerala
+${window.location.href}`;
+
+    if (navigator.share) {
+
+        try {
+
+            await navigator.share({
+                title: data.title,
+                text: message
+            });
+
+        } catch (error) {
+
+            console.log("Share cancelled");
+
+        }
+
+    } else {
+
+        try {
+
+            await navigator.clipboard.writeText(message);
+
+            alert(
+                "Vehicle details copied! Paste them into WhatsApp."
+            );
+
+        } catch (error) {
+
+            alert(message);
+
+        }
+
+    }
+
+}
 
 loadVehicles();
    
