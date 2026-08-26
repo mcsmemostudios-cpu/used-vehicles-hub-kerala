@@ -1,20 +1,20 @@
 [
     {
         "id": 1,
-        "title": "Maruti Suzuki Swift",
+        "title": "2007 alto lxi",
         "type": "Car",
-        "brand": "Maruti Suzuki",
-        "model": "Swift",
-        "year": 2018,
-        "price": 450000,
+        "brand": "Maruti",
+        "model": "Alto",
+        "year": 2007,
+        "price": 95000,
         "fuel": "Petrol",
         "transmission": "Manual",
-        "kilometers": 75000,
+        "kilometers": ,
         "owners": 2,
         "location": "Kozhikode, Kerala",
-        "description": "Well maintained vehicle in good condition.",
-        "phone": "7907493450",
-        "image": "images/swift.jpg"
+        "description": "Well maintained vehicle in good condition.AC/Power steering.",
+        "phone": "8921135045",
+        "image": "2007 alto lxi.jpg"
        
     },
 
