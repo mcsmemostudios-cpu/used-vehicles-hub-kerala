@@ -20,7 +20,7 @@
 
     {
         "id": 2,
-        "title": "2009 alto lxt",
+        "title": "2009 alto lxi",
         "type": "car",
         "brand": "maruthi",
         "model": "alto lxi",
@@ -30,9 +30,44 @@
         "transmission": "Manual",
         "kilometers": 78000,
         "owners": 2,
-        "location": "Wayanad, Kerala",
-        "description": "Good condition motorcycle.",
+        "location": "muvattupuzha, Kerala",
+        "description": "Good condition motorcycle.AC/Power steering",
         "phone": "8921135045",
         "image": "images/redalto2009.jpg"
+    },
+    {
+        "id": 3,
+        "title": "activa 2016",
+        "type": "bike",
+        "brand": "activa",
+        "model": "activa 3G",
+        "year": 2016,
+        "price": 39000,
+        "fuel": "Petrol",
+        "transmission": "Manual",
+        "kilometers": 25000,
+        "owners": 1,
+        "location": "muvatupuzha, Kerala",
+        "description": "Good condition motorcycle.AC",
+        "phone": "8921135045",
+        "image": "images/activa2016.jpg"
+    },
+    {
+        "id": 4,
+        "title": "2007 alto ",
+        "type": "car",
+        "brand": "maruthi",
+        "model": "alto  ",
+        "year": 2007,
+        "price": 78000,
+        "fuel": "Petrol",
+        "transmission": "Manual",
+        "kilometers": 0.00,
+        "owners": 3,
+        "location": "muvattupuzha, Kerala",
+        "description": "Good condition motorcycle.AC",
+        "phone": "8921135045",
+        "image": "images/whitealto2007.jpg"
     }
+    
 ]
