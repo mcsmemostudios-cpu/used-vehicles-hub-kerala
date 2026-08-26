@@ -1,537 +1,440 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
+    <meta charset="UTF-8">
 
-    background: #f4f6f8;
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    color: #17202a;
+    <title>
+        Used Vehicles Hub Kerala
+    </title>
 
-    line-height: 1.5;
-}
+    <link rel="stylesheet"
+          href="style.css">
 
+</head>
 
-/* HEADER */
 
-.header {
+<body>
 
-    width: 100%;
 
-    padding: 18px 6%;
+<!-- HEADER -->
 
-    background: #ffffff;
+<header>
 
-    display: flex;
+    <div class="header-content">
 
-    align-items: center;
+        <h1>
+            USED VEHICLES HUB KERALA
+        </h1>
 
-    justify-content: space-between;
+        <p>
+            Buy • Sell • Find Used Vehicles
+        </p>
 
-    border-bottom: 1px solid #e5e7eb;
+    </div>
 
-    position: sticky;
+</header>
 
-    top: 0;
 
-    z-index: 100;
-}
 
+<!-- HERO -->
 
-.logo {
+<section class="hero">
 
-    display: flex;
+    <h2>
+        Find Your Next Vehicle
+    </h2>
 
-    align-items: center;
+    <p>
+        Cars • Bikes • Vans • Other Vehicles
+    </p>
 
-    gap: 12px;
-}
 
+    
+</section>
 
-.logo > span {
 
-    width: 48px;
 
-    height: 48px;
+<!-- SEARCH -->
 
-    background: #111827;
+<section class="search-area">
 
-    color: white;
+    <input
+        type="text"
+        id="searchBox"
+        placeholder="Search vehicle, brand, model or location..."
+    >
 
-    border-radius: 12px;
 
-    display: flex;
+    <select id="typeFilter">
 
-    align-items: center;
+        <option value="">
+            All Vehicles
+        </option>
 
-    justify-content: center;
+        <option value="Car">
+            Cars
+        </option>
 
-    font-weight: bold;
+        <option value="Bike">
+            Bikes
+        </option>
 
-    font-size: 14px;
-}
+        <option value="Van">
+            Vans
+        </option>
 
+        <option value="Other">
+            Other
+        </option>
 
-.logo h1 {
+    </select>
 
-    font-size: 20px;
+</section>
 
-    line-height: 1.1;
-}
 
 
-.logo p {
+<!-- VEHICLES -->
 
-    font-size: 13px;
+<section>
 
-    color: #6b7280;
-}
+    <h2 class="section-title">
+        Available Vehicles
+    </h2>
 
 
-.add-button {
+    <div
+        id="vehicleContainer"
+        class="vehicle-grid"
+    >
 
-    text-decoration: none;
+        <p>
+            Loading vehicles..
+        </p>
 
-    background: #16a34a;
+    </div>
 
-    color: white;
+</section>
 
-    padding: 12px 18px;
 
-    border-radius: 9px;
 
-    font-weight: bold;
-}
+<!-- SELL VEHICLE -->
 
+<section class="sell-section">
 
-.add-button:hover {
+    <h2>
+        Want to Sell Your Vehicle?
+    </h2>
 
-    background: #15803d;
-}
 
+    
+   <p>
+  Send your vehicle details and photos through WhatsApp.
+</p>
 
-/* HERO */
+<a 
+  class="whatsapp-button" 
+  href="https://wa.me/917907493450?text=Hello%20Used%20Vehicles%20Hub%20Kerala%2C%20I%20want%20to%20list%20my%20vehicle.%0A%0ATitle%3A%20%0AModel%3A%20%0AYear%3A%20%0APrice%3A%20%0AKilometers%3A%20%0AFuel%20Type%3A%20%0ATransmission%3A%20%0AOwner%3A%20%0ALocation%3A%20%0AContact%20Number%3A%20%0ADescription%3A%20%0A%0A*Please%20attach%201%20image%20of%20the%20vehicle.*" 
+  target="_blank"
+>
+     ➕ ADD YOUR VEHICLE
+</a>
 
-.hero {
+       
 
-    background: #111827;
+    </a>
 
-    color: white;
+</section>
 
-    text-align: center;
 
-    padding: 55px 20px;
-}
 
+<!-- FOOTER -->
 
-.hero h2 {
+<footer>
 
-    font-size: clamp(28px, 5vw, 48px);
+    <h3>
+        USED VEHICLES HUB KERALA
+    </h3>
 
-    margin-bottom: 10px;
-}
 
+    <p>
+        WhatsApp:
+        <a
+            href="https://wa.me/917907493450"
+            target="_blank"
+        >
+            7907493450
+        </a>
+    </p>
 
-.hero p {
 
-    color: #d1d5db;
+    <p>
+        © 2026 Used Vehicles Hub Kerala
+    </p>
 
-    font-size: 17px;
+</footer>
 
-    margin-bottom: 28px;
-}
 
 
-.search-box {
+<script>
 
-    max-width: 800px;
+async function loadVehicles() {
 
-    margin: auto;
+    try {
 
-    display: flex;
+        const response =
+            await fetch("vehicles.json");
 
-    gap: 10px;
-}
+        const vehicles =
+            await response.json();
 
 
-.search-box input,
-.search-box select {
+        displayVehicles(vehicles);
 
-    border: none;
 
-    outline: none;
+        document
+        .getElementById("searchBox")
+        .addEventListener(
+            "input",
+            function () {
 
-    padding: 15px;
+                filterVehicles(vehicles);
 
-    border-radius: 8px;
+            }
+        );
 
-    font-size: 15px;
-}
 
+        document
+        .getElementById("typeFilter")
+        .addEventListener(
+            "change",
+            function () {
 
-.search-box input {
+                filterVehicles(vehicles);
 
-    flex: 1;
-}
+            }
+        );
 
-
-.search-box select {
-
-    min-width: 180px;
-}
-
-
-/* MAIN */
-
-main {
-
-    max-width: 1200px;
-
-    margin: auto;
-
-    padding: 35px 20px;
-}
-
-
-.vehicle-count {
-
-    margin-bottom: 20px;
-
-    font-weight: bold;
-
-    color: #4b5563;
-}
-
-
-.vehicles {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit, minmax(280px, 1fr));
-
-    gap: 25px;
-}
-
-
-/* VEHICLE CARD */
-
-.vehicle-card {
-
-    background: white;
-
-    border-radius: 15px;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 4px 20px rgba(0,0,0,0.08);
-
-    transition: 0.25s;
-}
-
-
-.vehicle-card:hover {
-
-    transform: translateY(-4px);
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,0.12);
-}
-
-
-/* IMAGE */
-
-.image-container {
-
-    width: 100%;
-
-    height: 230px;
-
-    position: relative;
-
-    background: #e5e7eb;
-}
-
-
-.image-container img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-}
-
-
-.vehicle-type {
-
-    position: absolute;
-
-    top: 12px;
-
-    left: 12px;
-
-    background: #111827;
-
-    color: white;
-
-    padding: 6px 10px;
-
-    border-radius: 6px;
-
-    font-size: 12px;
-
-    text-transform: capitalize;
-
-    font-weight: bold;
-}
-
-
-/* VEHICLE INFO */
-
-.vehicle-info {
-
-    padding: 20px;
-}
-
-
-.vehicle-info h2 {
-
-    font-size: 21px;
-
-    margin-bottom: 7px;
-}
-
-
-.price {
-
-    color: #111827;
-
-    font-size: 24px;
-
-    font-weight: bold;
-
-    margin-bottom: 18px;
-}
-
-
-/* DETAILS */
-
-.details {
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 12px;
-
-    margin-bottom: 18px;
-}
-
-
-.details div {
-
-    background: #f8fafc;
-
-    padding: 9px;
-
-    border-radius: 7px;
-}
-
-
-.details strong {
-
-    display: block;
-
-    font-size: 11px;
-
-    color: #6b7280;
-
-    text-transform: uppercase;
-}
-
-
-.details span {
-
-    display: block;
-
-    font-size: 14px;
-
-    margin-top: 2px;
-}
-
-
-.description {
-
-    color: #4b5563;
-
-    font-size: 14px;
-
-    margin-bottom: 18px;
-}
-
-
-/* CALL BUTTON */
-
-.call-button {
-
-    display: block;
-
-    width: 100%;
-
-    text-align: center;
-
-    text-decoration: none;
-
-    background: #2563eb;
-
-    color: white;
-
-    padding: 13px;
-
-    border-radius: 8px;
-
-    font-weight: bold;
-
-    font-size: 16px;
-}
-
-
-.call-button:hover {
-
-    background: #1d4ed8;
-}
-
-
-/* NO VEHICLES */
-
-.no-vehicles {
-
-    display: none;
-
-    text-align: center;
-
-    padding: 60px 20px;
-
-    background: white;
-
-    border-radius: 12px;
-
-    color: #6b7280;
-}
-
-
-/* FOOTER */
-
-footer {
-
-    margin-top: 40px;
-
-    background: #111827;
-
-    color: white;
-
-    text-align: center;
-
-    padding: 40px 20px;
-}
-
-
-footer h3 {
-
-    margin-bottom: 8px;
-}
-
-
-footer p {
-
-    color: #9ca3af;
-
-    margin-bottom: 10px;
-}
-
-
-footer a {
-
-    color: #4ade80;
-
-    text-decoration: none;
-
-    font-weight: bold;
-}
-
-
-.copyright {
-
-    margin-top: 25px;
-
-    font-size: 13px;
-}
-
-
-/* MOBILE */
-
-@media (max-width: 650px) {
-
-    .header {
-
-        padding: 14px 15px;
 
     }
 
+    catch(error) {
 
-    .logo h1 {
+        console.error(error);
 
-        font-size: 16px;
-
-    }
-
-
-    .logo > span {
-
-        width: 40px;
-
-        height: 40px;
-
-        font-size: 12px;
-
-    }
-
-
-    .add-button {
-
-        padding: 9px 12px;
-
-        font-size: 13px;
-
-    }
-
-
-    .search-box {
-
-        flex-direction: column;
-
-    }
-
-
-    .search-box select {
-
-        width: 100%;
-
-    }
-
-
-    .image-container {
-
-        height: 210px;
+        document
+        .getElementById("vehicleContainer")
+        .innerHTML =
+            "<p>Unable to load vehicles.</p>";
 
     }
 
 }
+
+
+
+function filterVehicles(vehicles) {
+
+    const search =
+        document
+        .getElementById("searchBox")
+        .value
+        .toLowerCase();
+
+
+    const type =
+        document
+        .getElementById("typeFilter")
+        .value;
+
+
+    const filtered =
+        vehicles.filter(function(vehicle) {
+
+
+            const text =
+                (
+                    vehicle.title +
+                    " " +
+                    vehicle.brand +
+                    " " +
+                    vehicle.model +
+                    " " +
+                    vehicle.location
+                ).toLowerCase();
+
+
+            const searchMatch =
+                text.includes(search);
+
+
+            const typeMatch =
+                !type ||
+                vehicle.type === type;
+
+
+            return searchMatch &&
+                   typeMatch;
+
+        });
+
+
+    displayVehicles(filtered);
+
+}
+
+
+
+function displayVehicles(vehicles) {
+
+    const container =
+        document.getElementById(
+            "vehicleContainer"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (vehicles.length === 0) {
+
+        container.innerHTML =
+            "<p>No vehicles found.</p>";
+
+        return;
+
+    }
+
+
+    vehicles.forEach(function(vehicle) {
+
+
+        const card =
+            document.createElement("div");
+            card.id = `vehicle-${vehicle.id}`;
+
+
+        card.className =
+            "vehicle-card";
+
+
+        const price =
+            vehicle.price
+            ? "₹" +
+              Number(vehicle.price)
+              .toLocaleString("en-IN")
+            : "Price on request";
+
+
+       
+
+
+        card.innerHTML = `
+
+            <img
+                src="${vehicle.image}"
+                alt="${vehicle.title}"
+                class="vehicle-image"
+                <button onclick="shareVehicle(${vehicle.id})">
+         share
+</button>
+            >
+
+
+            <div class="vehicle-content">
+
+                <h3>
+                    ${vehicle.title}
+                </h3>
+
+
+                <div class="price">
+                    ${price}
+                </div>
+
+
+                <p>
+
+                    ${vehicle.year || ""}
+                    ${vehicle.fuel ? " • " + vehicle.fuel : ""}
+                    ${vehicle.transmission ? " • " + vehicle.transmission : ""}
+
+                </p>
+
+
+                <p>
+
+                    ${vehicle.kilometers
+                        ? Number(vehicle.kilometers).toLocaleString("en-IN") + " km"
+                        : ""}
+
+                </p>
+
+
+                <p>
+
+                    📍 ${vehicle.location}
+
+                </p>
+
+
+                <p class="description">
+
+                    ${vehicle.description}
+
+                </p>
+
+
+               <a class="call-btn" href="tel:${vehicle.phone}">
+    📞 Call
+</a>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+
+loadVehicles();
+   async function shareVehicle(vehicle) {
+    const vehicleUrl =
+        window.location.origin +
+        window.location.pathname +
+        "?vehicle=" + encodeURIComponent(vehicle.id);
+
+    const shareText =
+        `${vehicle.title}\n` +
+        `₹${vehicle.price}\n` +
+        `${vehicle.kilometers} km\n` +
+        `${vehicle.location}\n\n` +
+        `View vehicle:\n${vehicleUrl}`;
+
+    if (navigator.share) {
+        await navigator.share({
+            title: vehicle.title,
+            text: shareText,
+            url: vehicleUrl
+        });
+    } else {
+        await navigator.clipboard.writeText(shareText);
+        alert("Vehicle details and link copied!");
+    }
+}
+
+</script>
+
+
+</body>
+
+</html>
