@@ -327,17 +327,7 @@ function displayVehicles(vehicles) {
             : "Price on request";
 
 
-        const whatsappText =
-            "Hello, I am interested in " +
-            vehicle.title +
-            " listed on Used Vehicles Hub Kerala.";
-
-
-        const whatsappLink =
-            "https://wa.me/917907493450?text=" +
-            encodeURIComponent(
-                whatsappText
-            );
+       
 
 
         card.innerHTML = `
@@ -393,15 +383,7 @@ function displayVehicles(vehicles) {
                 </p>
 
 
-                <a
-                    class="whatsapp-button"
-                    href="${whatsappLink}"
-                    target="_blank"
-                >
-
-                    💬 WhatsApp
-
-                </a>
+               
 
             </div>
 
