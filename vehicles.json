@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "title": "Maruti Suzuki Swift",
+        "type": "Car",
+        "brand": "Maruti Suzuki",
+        "model": "Swift",
+        "year": 2018,
+        "price": 450000,
+        "fuel": "Petrol",
+        "transmission": "Manual",
+        "kilometers": 75000,
+        "owners": 2,
+        "location": "Kozhikode, Kerala",
+        "description": "Well maintained vehicle in good condition.",
+        "image": "images/swift.jpg"
+    },
+
+    {
+        "id": 2,
+        "title": "Royal Enfield Classic 350",
+        "type": "Bike",
+        "brand": "Royal Enfield",
+        "model": "Classic 350",
+        "year": 2021,
+        "price": 120000,
+        "fuel": "Petrol",
+        "transmission": "Manual",
+        "kilometers": 25000,
+        "owners": 1,
+        "location": "Wayanad, Kerala",
+        "description": "Good condition motorcycle.",
+        "image": "images/classic350.jpg"
+    }
+]

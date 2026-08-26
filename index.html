@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Used Vehicles Hub Kerala
+    </title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="header-content">
+
+        <h1>
+            USED VEHICLES HUB KERALA
+        </h1>
+
+        <p>
+            Buy • Sell • Find Used Vehicles
+        </p>
+
+    </div>
+
+</header>
+
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h2>
+        Find Your Next Vehicle
+    </h2>
+
+    <p>
+        Cars • Bikes • Vans • Other Vehicles
+    </p>
+
+
+    
+</section>
+
+
+
+<!-- SEARCH -->
+
+<section class="search-area">
+
+    <input
+        type="text"
+        id="searchBox"
+        placeholder="Search vehicle, brand, model or location..."
+    >
+
+
+    <select id="typeFilter">
+
+        <option value="">
+            All Vehicles
+        </option>
+
+        <option value="Car">
+            Cars
+        </option>
+
+        <option value="Bike">
+            Bikes
+        </option>
+
+        <option value="Van">
+            Vans
+        </option>
+
+        <option value="Other">
+            Other
+        </option>
+
+    </select>
+
+</section>
+
+
+
+<!-- VEHICLES -->
+
+<section>
+
+    <h2 class="section-title">
+        Available Vehicles
+    </h2>
+
+
+    <div
+        id="vehicleContainer"
+        class="vehicle-grid"
+    >
+
+        <p>
+            Loading vehicles...
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- SELL VEHICLE -->
+
+<section class="sell-section">
+
+    <h2>
+        Want to Sell Your Vehicle?
+    </h2>
+
+
+    <p>
+        Send your vehicle details and photos through WhatsApp.
+    </p>
+
+
+    <a
+        class="whatsapp-button"
+        href="https://wa.me/917907493450?text=Hello%20Used%20Vehicles%20Hub%20Kerala%2C%20I%20want%20to%20list%20my%20vehicle.%0A%0AVehicle%20Name%3A%0AYear%3A%0APrice%3A%0ALocation%3A"
+        target="_blank"
+    >
+
+        ➕ ADD YOUR VEHICLE
+
+    </a>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h3>
+        USED VEHICLES HUB KERALA
+    </h3>
+
+
+    <p>
+        WhatsApp:
+        <a
+            href="https://wa.me/917907493450"
+            target="_blank"
+        >
+            7907493450
+        </a>
+    </p>
+
+
+    <p>
+        © 2026 Used Vehicles Hub Kerala
+    </p>
+
+</footer>
+
+
+
+<script>
+
+async function loadVehicles() {
+
+    try {
+
+        const response =
+            await fetch("vehicles.json");
+
+        const vehicles =
+            await response.json();
+
+
+        displayVehicles(vehicles);
+
+
+        document
+        .getElementById("searchBox")
+        .addEventListener(
+            "input",
+            function () {
+
+                filterVehicles(vehicles);
+
+            }
+        );
+
+
+        document
+        .getElementById("typeFilter")
+        .addEventListener(
+            "change",
+            function () {
+
+                filterVehicles(vehicles);
+
+            }
+        );
+
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        document
+        .getElementById("vehicleContainer")
+        .innerHTML =
+            "<p>Unable to load vehicles.</p>";
+
+    }
+
+}
+
+
+
+function filterVehicles(vehicles) {
+
+    const search =
+        document
+        .getElementById("searchBox")
+        .value
+        .toLowerCase();
+
+
+    const type =
+        document
+        .getElementById("typeFilter")
+        .value;
+
+
+    const filtered =
+        vehicles.filter(function(vehicle) {
+
+
+            const text =
+                (
+                    vehicle.title +
+                    " " +
+                    vehicle.brand +
+                    " " +
+                    vehicle.model +
+                    " " +
+                    vehicle.location
+                ).toLowerCase();
+
+
+            const searchMatch =
+                text.includes(search);
+
+
+            const typeMatch =
+                !type ||
+                vehicle.type === type;
+
+
+            return searchMatch &&
+                   typeMatch;
+
+        });
+
+
+    displayVehicles(filtered);
+
+}
+
+
+
+function displayVehicles(vehicles) {
+
+    const container =
+        document.getElementById(
+            "vehicleContainer"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (vehicles.length === 0) {
+
+        container.innerHTML =
+            "<p>No vehicles found.</p>";
+
+        return;
+
+    }
+
+
+    vehicles.forEach(function(vehicle) {
+
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "vehicle-card";
+
+
+        const price =
+            vehicle.price
+            ? "₹" +
+              Number(vehicle.price)
+              .toLocaleString("en-IN")
+            : "Price on request";
+
+
+        const whatsappText =
+            "Hello, I am interested in " +
+            vehicle.title +
+            " listed on Used Vehicles Hub Kerala.";
+
+
+        const whatsappLink =
+            "https://wa.me/917907493450?text=" +
+            encodeURIComponent(
+                whatsappText
+            );
+
+
+        card.innerHTML = `
+
+            <img
+                src="${vehicle.image}"
+                alt="${vehicle.title}"
+                class="vehicle-image"
+            >
+
+
+            <div class="vehicle-content">
+
+                <h3>
+                    ${vehicle.title}
+                </h3>
+
+
+                <div class="price">
+                    ${price}
+                </div>
+
+
+                <p>
+
+                    ${vehicle.year || ""}
+                    ${vehicle.fuel ? " • " + vehicle.fuel : ""}
+                    ${vehicle.transmission ? " • " + vehicle.transmission : ""}
+
+                </p>
+
+
+                <p>
+
+                    ${vehicle.kilometers
+                        ? Number(vehicle.kilometers).toLocaleString("en-IN") + " km"
+                        : ""}
+
+                </p>
+
+
+                <p>
+
+                    📍 ${vehicle.location}
+
+                </p>
+
+
+                <p class="description">
+
+                    ${vehicle.description}
+
+                </p>
+
+
+                <a
+                    class="whatsapp-button"
+                    href="${whatsappLink}"
+                    target="_blank"
+                >
+
+                    💬 WhatsApp
+
+                </a>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+
+loadVehicles();
+
+</script>
+
+
+</body>
+
+</html>
