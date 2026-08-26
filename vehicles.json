@@ -86,6 +86,97 @@
         "phone": "8921135045",
         "image": "images/redeon2012.png"
        
+    },
+     {
+        "id": 6,
+        "title": "2007 alto lxi black",
+        "type": "Car",
+        "brand": "Maruti",
+        "model": "Alto",
+        "year": 2007,
+        "price": 95000,
+        "fuel": "Petrol",
+        "transmission": "Manual",
+        "kilometers": 74000 ,
+        "owners": 2,
+        "location": "muvatupuzha, Kerala",
+        "description": "Well maintained vehicle in good condition.AC/Power steering.",
+        "phone": "8921135045",
+        "image": "images/blackalto2007lxi.png"
+       
+    },
+ {
+        "id": 7,
+        "title": "2006 maruthi800",
+        "type": "Car",
+        "brand": "Maruti",
+        "model": "800",
+        "year": 2006,
+        "price": "sold",
+        "fuel": "Petrol",
+        "transmission": "Manual",
+        "kilometers": 74000 ,
+        "owners": 2,
+        "location": "muvatupuzha, Kerala",
+        "description": "Well maintained vehicle in good condition.AC/Power steering.",
+        "phone": "8921135045",
+        "image": "images/2006white800.png"
+       
+    },
+ {
+        "id": 8,
+        "title": "2007 alto lxi",
+        "type": "Car",
+        "brand": "Maruti",
+        "model": "Alto",
+        "year": 2007,
+        "price": 95000,
+        "fuel": "Petrol",
+        "transmission": "Manual",
+        "kilometers": 74000 ,
+        "owners": 2,
+        "location": "muvatupuzha, Kerala",
+        "description": "Well maintained vehicle in good condition.AC/Power steering.",
+        "phone": "8921135045",
+        "image": "images/2007altolxi.jpg"
+       
+    },
+ {
+        "id": 9,
+        "title": "2007 alto lxi",
+        "type": "Car",
+        "brand": "Maruti",
+        "model": "Alto",
+        "year": 2007,
+        "price": 95000,
+        "fuel": "Petrol",
+        "transmission": "Manual",
+        "kilometers": 74000 ,
+        "owners": 2,
+        "location": "muvatupuzha, Kerala",
+        "description": "Well maintained vehicle in good condition.AC/Power steering.",
+        "phone": "8921135045",
+        "image": "images/2007altolxi.jpg"
+       
+    },
+ {
+        "id": 10,
+        "title": "2007 alto lxi",
+        "type": "Car",
+        "brand": "Maruti",
+        "model": "Alto",
+        "year": 2007,
+        "price": 95000,
+        "fuel": "Petrol",
+        "transmission": "Manual",
+        "kilometers": 74000 ,
+        "owners": 2,
+        "location": "muvatupuzha, Kerala",
+        "description": "Well maintained vehicle in good condition.AC/Power steering.",
+        "phone": "8921135045",
+        "image": "images/2007altolxi.jpg"
+       
     }
+
     
 ]
