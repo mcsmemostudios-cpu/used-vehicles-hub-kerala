@@ -315,6 +315,7 @@ function displayVehicles(vehicles) {
 
         const card =
             document.createElement("div");
+            card.id = `vehicle-${vehicle.id}`;
 
 
         card.className =
@@ -338,6 +339,9 @@ function displayVehicles(vehicles) {
                 src="${vehicle.image}"
                 alt="${vehicle.title}"
                 class="vehicle-image"
+                <button onclick="shareVehicle(${vehicle.id})">
+    🔗 Share
+</button>
             >
 
 
@@ -403,6 +407,51 @@ function displayVehicles(vehicles) {
 
 
 loadVehicles();
+    function shareVehicle(vehicleId) {
+    const url = new URL(window.location.href);
+
+    url.search = "";
+    url.searchParams.set("vehicle", vehicleId);
+
+    if (navigator.share) {
+        navigator.share({
+            title: "Used Vehicle - Kerala",
+            text: "Check this vehicle",
+            url: url.toString()
+        }).catch(() => {});
+    } else {
+        navigator.clipboard.writeText(url.toString())
+            .then(() => {
+                alert("Vehicle link copied!");
+            })
+            .catch(() => {
+                prompt("Copy this vehicle link:", url.toString());
+            });
+    }
+}
+    function openSharedVehicle() {
+    const params = new URLSearchParams(window.location.search);
+    const vehicleId = params.get("vehicle");
+
+    if (!vehicleId) return;
+
+    const card = document.getElementById(`vehicle-${vehicleId}`);
+
+    if (card) {
+        setTimeout(() => {
+            card.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+            card.style.outline = "3px solid #007bff";
+
+            setTimeout(() => {
+                card.style.outline = "";
+            }, 5000);
+        }, 500);
+    }
+}
 
 </script>
 
