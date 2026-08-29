@@ -194,6 +194,24 @@
         "phone": "7907493450",
         "image": "images/passionplus2009.png"
        
+    },
+    {
+        "id": 12,
+        "title": "1996 red splendor",
+        "type": "Bike",
+        "brand": "hero",
+        "model": "splendor",
+        "year": 1996,
+        "price": 45000,
+        "fuel": "Petrol",
+        "transmission": "",
+        "kilometers": 0.0 ,
+        "owner": 2,
+        "location": "chalakudy,thrissur, Kerala",
+        "description": "Well maintained vehicle in good condition.",
+        "phone": "7907493450",
+        "image": "images/redsplender.png"
+       
     }
 
     
