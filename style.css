@@ -20,6 +20,30 @@ body {
 
 }
 
+.details-btn {
+display: inline-block;
+padding: 12px 18px;
+background: #007bff;
+color: white;
+text-decoration: none;
+border-radius: 6px;
+font-weight: bold;
+text-align: center;
+}
+
+.details-btn:hover {
+background: #0056b3;
+}
+
+.vehicle-buttons {
+display: flex;
+gap: 10px;
+margin-top: 15px;
+}
+
+.vehicle-buttons a {
+flex: 1;
+}
 
 /* HEADER */
 
