@@ -376,3 +376,17 @@ margin-top: 15px;
 .vehicle-buttons a {
 flex: 1;
 }
+.terms-button {
+display: inline-block;
+margin-top: 15px;
+padding: 10px 22px;
+background: #007bff;
+color: white;
+text-decoration: none;
+border-radius: 6px;
+font-weight: bold;
+}
+
+.terms-button:hover {
+background: #0056b3;
+}
