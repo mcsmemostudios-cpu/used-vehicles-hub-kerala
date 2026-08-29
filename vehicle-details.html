@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+   content="width=device-width, initial-scale=1.0">
+
+<title>Vehicle Details - Used Vehicles Hub Kerala</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #222;
+}
+
+
+/* HEADER */
+
+header {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 22px 15px;
+}
+
+header h1 {
+    font-size: 25px;
+}
+
+header p {
+    margin-top: 6px;
+    color: #ccc;
+}
+
+
+/* BACK BUTTON */
+
+.back-button {
+    display: inline-block;
+    margin: 20px;
+    padding: 10px 18px;
+    background: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+
+/* MAIN CONTAINER */
+
+.details-container {
+    max-width: 1100px;
+    margin: 10px auto 40px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+
+/* TWO COLUMNS */
+
+.vehicle-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+
+/* MAIN IMAGE */
+
+.main-image {
+    width: 100%;
+    height: 450px;
+    object-fit: contain;
+    background: #eee;
+    border-radius: 10px;
+}
+
+
+/* THUMBNAILS */
+
+.thumbnail-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    overflow-x: auto;
+}
+
+.thumbnail {
+    width: 90px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.thumbnail:hover {
+    border-color: #007bff;
+}
+
+
+/* TITLE */
+
+.vehicle-title {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+
+/* PRICE */
+
+.price {
+    font-size: 28px;
+    font-weight: bold;
+    color: #008000;
+    margin-bottom: 20px;
+}
+
+
+/* DETAILS TABLE */
+
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.details-table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.details-table td {
+    padding: 13px 5px;
+}
+
+.details-table td:first-child {
+    font-weight: bold;
+    width: 40%;
+    color: #555;
+}
+
+
+/* DESCRIPTION */
+
+.description-section {
+    margin-top: 30px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.description-section h2 {
+    margin-bottom: 10px;
+}
+
+.description {
+    line-height: 1.7;
+    color: #555;
+}
+
+
+/* BUTTONS */
+
+.buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.call-button,
+.share-button {
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+.call-button {
+    background: #0a8f3c;
+}
+
+.share-button {
+    background: #007bff;
+}
+
+
+/* LOADING */
+
+.loading {
+    text-align: center;
+    padding: 50px;
+    font-size: 20px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .vehicle-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .main-image {
+        height: 300px;
+    }
+
+    .vehicle-title {
+        font-size: 24px;
+    }
+
+    .price {
+        font-size: 24px;
+    }
+
+    .details-container {
+        margin: 10px;
+        padding: 15px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+```
+<h1>
+    USED VEHICLES HUB KERALA
+</h1>
+
+<p>
+    Buy • Sell • Find Used Vehicles
+</p>
+```
+
+</header>
+
+<!-- BACK BUTTON -->
+
+<a href="index.html"
+class="back-button">
+
+```
+← Back to Vehicles
+```
+
+</a>
+
+<!-- VEHICLE DETAILS -->
+
+<div id="vehicleDetails">
+
+```
+<div class="loading">
+
+    Loading vehicle details...
+
+</div>
+```
+
+</div>
+
+<script>
+
+
+async function loadVehicleDetails() {
+
+    try {
+
+        const response =
+            await fetch("vehicles.json");
+
+
+        const vehicles =
+            await response.json();
+
+
+        /* GET ID FROM URL */
+
+        const urlParams =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const vehicleId =
+            urlParams.get("id");
+
+
+        /* FIND VEHICLE */
+
+        const vehicle =
+            vehicles.find(function(item) {
+
+                return String(item.id) ===
+                       String(vehicleId);
+
+            });
+
+
+        /* VEHICLE NOT FOUND */
+
+        if (!vehicle) {
+
+            document.getElementById(
+                "vehicleDetails"
+            ).innerHTML = `
+
+                <div class="loading">
+
+                    <h2>
+                        Vehicle not found
+                    </h2>
+
+                    <br>
+
+                    <a href="index.html">
+                        Go back to vehicles
+                    </a>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        displayVehicle(vehicle);
+
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+
+        document.getElementById(
+            "vehicleDetails"
+        ).innerHTML = `
+
+            <div class="loading">
+
+                Unable to load vehicle details.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* DISPLAY VEHICLE */
+
+function displayVehicle(vehicle) {
+
+
+    const container =
+        document.getElementById(
+            "vehicleDetails"
+        );
+
+
+    /* PRICE */
+
+    const price =
+        vehicle.price
+
+        ? "₹" +
+          Number(vehicle.price)
+          .toLocaleString("en-IN")
+
+        : "Price on request";
+
+
+    /* IMAGES */
+
+    const images =
+        vehicle.images &&
+        vehicle.images.length > 0
+
+        ? vehicle.images
+
+        : [vehicle.image];
+
+
+    /* PHONE */
+
+    const phone =
+        vehicle.phone ||
+        "7907493450";
+
+
+    container.innerHTML = `
+
+        <div class="details-container">
+
+
+            <div class="vehicle-layout">
+
+
+                <!-- IMAGES -->
+
+                <div>
+
+                    <img
+
+                        id="mainImage"
+
+                        src="${images[0]}"
+
+                        alt="${vehicle.title}"
+
+                        class="main-image"
+
+                    >
+
+
+                    <div class="thumbnail-container">
+
+
+                        ${images.map(function(image) {
+
+                            return `
+
+                                <img
+
+                                    src="${image}"
+
+                                    class="thumbnail"
+
+                                    onclick="changeMainImage('${image}')"
+
+                                >
+
+                            `;
+
+                        }).join("")}
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- INFORMATION -->
+
+                <div>
+
+
+                    <h1 class="vehicle-title">
+
+                        ${vehicle.title || "Vehicle"}
+
+                    </h1>
+
+
+                    <div class="price">
+
+                        ${price}
+
+                    </div>
+
+
+                    <table class="details-table">
+
+
+                        <tr>
+
+                            <td>
+                                Vehicle Type
+                            </td>
+
+                            <td>
+                                ${vehicle.type || "N/A"}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Brand
+                            </td>
+
+                            <td>
+                                ${vehicle.brand || "N/A"}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Model
+                            </td>
+
+                            <td>
+                                ${vehicle.model || "N/A"}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Year
+                            </td>
+
+                            <td>
+                                ${vehicle.year || "N/A"}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Kilometers
+                            </td>
+
+                            <td>
+
+                                ${
+                                    vehicle.kilometers
+
+                                    ? Number(
+                                        vehicle.kilometers
+                                      ).toLocaleString(
+                                        "en-IN"
+                                      ) + " km"
+
+                                    : "N/A"
+                                }
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Fuel Type
+                            </td>
+
+                            <td>
+                                ${vehicle.fuel || "N/A"}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Transmission
+                            </td>
+
+                            <td>
+                                ${vehicle.transmission || "N/A"}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Ownership
+                            </td>
+
+                            <td>
+                                ${vehicle.owner || "N/A"}
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Location
+                            </td>
+
+                            <td>
+                                ${vehicle.location || "N/A"}
+                            </td>
+
+                        </tr>
+
+
+                    </table>
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="buttons">
+
+
+                        <a
+
+                            href="tel:${phone}"
+
+                            class="call-button"
+
+                        >
+
+                            📞 Call
+
+                        </a>
+
+
+                        <button
+
+                            class="share-button"
+
+                            onclick="shareVehicle()"
+
+                        >
+
+                            🔗 Share
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="description-section">
+
+
+                <h2>
+                    Vehicle Description
+                </h2>
+
+
+                <p class="description">
+
+                    ${
+                        vehicle.description ||
+                        "No description available."
+                    }
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+    `;
+
+
+    window.currentVehicle =
+        vehicle;
+
+}
+
+
+/* CHANGE IMAGE */
+
+function changeMainImage(image) {
+
+    document.getElementById(
+        "mainImage"
+    ).src = image;
+
+}
+
+
+/* SHARE */
+
+async function shareVehicle() {
+
+
+    const vehicle =
+        window.currentVehicle;
+
+
+    const price =
+        vehicle.price
+
+        ? "₹" +
+          Number(vehicle.price)
+          .toLocaleString("en-IN")
+
+        : "Price on request";
+
+
+    const message =
+
+`🚗 ${vehicle.title}
+
+💰 Price: ${price}
+
+📅 Year: ${vehicle.year || "N/A"}
+
+⛽ Fuel: ${vehicle.fuel || "N/A"}
+
+⚙️ Transmission: ${vehicle.transmission || "N/A"}
+
+🛣️ Kilometers: ${
+    vehicle.kilometers
+    ? Number(vehicle.kilometers)
+      .toLocaleString("en-IN") + " km"
+    : "N/A"
+}
+
+👤 Ownership: ${vehicle.owner || "N/A"}
+
+📍 Location: ${vehicle.location || "N/A"}
+
+📝 ${vehicle.description || "No description"}
+
+📞 Contact: ${vehicle.phone || "N/A"}
+
+🔗 Used Vehicles Hub Kerala
+
+${window.location.href}`;
+
+
+    if (navigator.share) {
+
+        try {
+
+            await navigator.share({
+
+                title: vehicle.title,
+
+                text: message,
+
+                url: window.location.href
+
+            });
+
+        }
+
+        catch(error) {
+
+            console.log(
+                "Share cancelled"
+            );
+
+        }
+
+    }
+
+    else {
+
+        try {
+
+            await navigator.clipboard.writeText(
+                message
+            );
+
+            alert(
+                "Vehicle details copied! You can paste them into WhatsApp."
+            );
+
+        }
+
+        catch(error) {
+
+            alert(message);
+
+        }
+
+    }
+
+}
+
+
+/* START */
+
+loadVehicleDetails();
+
+
+</script>
+
+</body>
+
+</html>
